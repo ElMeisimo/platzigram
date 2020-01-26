@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Feed</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="row">    
+      {% for post in posts %}
+        <div class="col-lg-4 offset-lg-4">
+          <div class="media">
+            <img class="mr-3 rounded-circle" src="{{ post.photo }}" alt={{ post.name }}>
+            <div class="media-body">
+              <h5 class="mt-0">{{post.user}}</h5>
+              {{post.timestamp}}
+            </div>
+          </div>
+          <img class="img-fluid mt-3 border rounded" src="{{ post.picture }}"/>
+          <h6 class="ml-1 mt-1">{{ post.name}}</h6>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
