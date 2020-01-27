@@ -5,16 +5,23 @@ from django.contrib.auth.models import User
 class Kingdom(models.Model):
 	"""Country Model"""
 	name = models.CharField(max_length=100)
+	
+	def __str__(self):
+		return self.name
 
 class City(models.Model):
 	"""City Model"""
 	name	= models.CharField(max_length=100)
 	kingdom = models.ForeignKey(Kingdom, on_delete=models.CASCADE)
 
-	def __init__(self, name, kingdom):
+	def __str__(self):
+		return "{city} of {kingdom}"\
+			.format( city = self.name, kingdom = self.kingdom)
+
+	""" def __init__(self, name, kingdom):
 		if not isinstance(kingdom, Kingdom):
 			kingdom = Kingdom.objects.get(name = kingdom)
-		models.Model.__init__(self, name = name, kingdom = kingdom )
+		models.Model.__init__(self, name = name, kingdom = kingdom ) """
 
 class Someone(models.Model):
 	"""Someone Model."""
@@ -29,7 +36,7 @@ class Someone(models.Model):
 	created  = models.DateTimeField(auto_now_add = True)
 	modified = models.DateTimeField(auto_now = True)
 
-	def __init__(self, bio, website, picture, user, city):
+""" 	def __init__(self, bio, website, picture, user, city):
 		if not isinstance(city, City):
 			city = City.objects.get(name = city)
 		if not isinstance(user, User):
@@ -41,4 +48,4 @@ class Someone(models.Model):
 			picture = picture, 
 			user 	= user, 
 			city 	= city,
-		)
+		) """
