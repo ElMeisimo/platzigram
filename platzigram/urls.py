@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from platzigram import settings
 from platzigram.app.views import views as local_views
 from posts import views as posts_views
 
@@ -24,4 +26,4 @@ urlpatterns = [
     path('time/', local_views.time),
     path('sort/', local_views.sort),
     path('posts/', posts_views.posts)
-]
+] + static( settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
